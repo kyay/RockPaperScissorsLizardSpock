@@ -12,6 +12,7 @@ namespace RockPaperScissorsLizardSpock
         private static Player playerUser = new Player(), playerComputer = new Player(Winner.Computer);
         private static Random rGen = new Random();
 
+        //The exit string for the while loop
         private const string EXIT_FLAG = "Exit";
 
         static void Main(string[] args)
@@ -23,6 +24,7 @@ namespace RockPaperScissorsLizardSpock
                 Console.WriteLine(
                     "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
                     "or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
+                //Print out all the possible choices
                 foreach(string choice in Enum.GetNames(typeof(Choice)))
                 {
                     if(choice == Choice.None.ToString())
@@ -31,7 +33,9 @@ namespace RockPaperScissorsLizardSpock
                     }
                     Console.WriteLine(choice);
                 }
+                //Read the user input
                 strInput = Console.ReadLine();
+                //Exit if user wants to
                 if (strInput.Trim().ToLower() == EXIT_FLAG.Trim().ToLower())
                 {
                     continue;
@@ -47,6 +51,7 @@ namespace RockPaperScissorsLizardSpock
                 {
                     playerUser.Choice = ConvertStringToChoice(strInput);
                 }
+                //If the user entered an invalid choice, tell them so.
                 if(playerUser.Choice == Choice.None)
                 {
                     Console.WriteLine("\nPlease enter a valid choice");
@@ -97,6 +102,7 @@ namespace RockPaperScissorsLizardSpock
             System.Collections.IEnumerator valuesEnumerator = Enum.GetValues(typeof(Choice)).GetEnumerator();
             System.Collections.IEnumerator namesEnumerator = Enum.GetNames(typeof(Choice)).GetEnumerator();
 
+            //Loop over all possible values and names
             while (valuesEnumerator.MoveNext() && namesEnumerator.MoveNext())
             {
                 if (intChoice == (int)valuesEnumerator.Current)
@@ -111,6 +117,7 @@ namespace RockPaperScissorsLizardSpock
         {
             System.Collections.IEnumerator namesEnumerator = Enum.GetNames(typeof(Choice)).GetEnumerator();
 
+            //Loop over all choice names
             while (namesEnumerator.MoveNext())
             {
                 if (strChoice.Trim().ToLower() == namesEnumerator.Current.ToString().ToLower())
