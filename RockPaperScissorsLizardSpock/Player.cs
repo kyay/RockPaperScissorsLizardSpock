@@ -13,6 +13,7 @@ namespace RockPaperScissorsLizardSpock
         private int winCount;
         private int lossCount;
         private int drawCount;
+        private int roundsPlayed;
 
         public Winner Winner
         {
@@ -73,6 +74,19 @@ namespace RockPaperScissorsLizardSpock
                 drawCount = value;
             }
         }
+
+        public int RoundsPlayed
+        {
+            get
+            {
+                return roundsPlayed;
+            }
+            set
+            {
+                roundsPlayed = value;
+            }
+        }
+
         public Player()
         {
             winner = Winner.User;
@@ -92,6 +106,7 @@ namespace RockPaperScissorsLizardSpock
                 drawCount++;
             else
                 lossCount++;
+            roundsPlayed++;
         }
 
         public override string ToString()
@@ -100,7 +115,8 @@ namespace RockPaperScissorsLizardSpock
             return "Win count: " + WinCount + "\n" +
                 "Draw count: " + DrawCount + "\n" +
                 "Loss count: " + LossCount + "\n" +
-                "Current Choice: " + choice;
+                "Current Choice: " + choice + "\n" +
+                "Rounds Played: " + roundsPlayed;
         }
     }
 }
