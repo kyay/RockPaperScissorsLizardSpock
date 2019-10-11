@@ -25,9 +25,9 @@ namespace RockPaperScissorsLizardSpock
                     "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
                     "or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
                 //Print out all the possible choices
-                foreach(string choice in Enum.GetNames(typeof(Choice)))
+                foreach (string choice in Enum.GetNames(typeof(Choice)))
                 {
-                    if(choice == Choice.None.ToString())
+                    if (choice == Choice.None.ToString())
                     {
                         continue;
                     }
@@ -52,7 +52,7 @@ namespace RockPaperScissorsLizardSpock
                     playerUser.Choice = ConvertStringToChoice(strInput);
                 }
                 //If the user entered an invalid choice, tell them so.
-                if(playerUser.Choice == Choice.None)
+                if (playerUser.Choice == Choice.None)
                 {
                     Console.WriteLine("\nPlease enter a valid choice");
                     continue;

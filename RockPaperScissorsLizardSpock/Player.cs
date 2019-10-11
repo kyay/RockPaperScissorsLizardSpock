@@ -6,43 +6,43 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-	public class Player
-	{
-		private Winner winner;
-		private Choice choice;
-		private int winCount;
-		private int lossCount;
-		private int drawCount;
+    public class Player
+    {
+        private Winner winner;
+        private Choice choice;
+        private int winCount;
+        private int lossCount;
+        private int drawCount;
 
-		public Winner Winner
-		{
-			get
-			{
-				return winner;
-			}
+        public Winner Winner
+        {
+            get
+            {
+                return winner;
+            }
             set
             {
                 winner = value;
             }
         }
 
-		public Choice Choice
-		{
-			get
-			{
-				return choice;
-			}
-			set
-			{
-				choice = value;
-			}
-		}
+        public Choice Choice
+        {
+            get
+            {
+                return choice;
+            }
+            set
+            {
+                choice = value;
+            }
+        }
 
-		public int WinCount
-		{
-			get
-			{
-				return winCount;
+        public int WinCount
+        {
+            get
+            {
+                return winCount;
             }
             set
             {
@@ -50,11 +50,11 @@ namespace RockPaperScissorsLizardSpock
             }
         }
 
-		public int LossCount
-		{
-			get
-			{
-				return lossCount;
+        public int LossCount
+        {
+            get
+            {
+                return lossCount;
             }
             set
             {
@@ -62,45 +62,45 @@ namespace RockPaperScissorsLizardSpock
             }
         }
 
-		public int DrawCount
-		{
-			get
-			{
-				return drawCount;
+        public int DrawCount
+        {
+            get
+            {
+                return drawCount;
             }
             set
             {
                 drawCount = value;
             }
         }
-		public Player()
-		{
-			winner = Winner.User;
-		}
+        public Player()
+        {
+            winner = Winner.User;
+        }
 
-		public Player(Winner wnrWinner)
-		{
-			winner = wnrWinner;
-		}
+        public Player(Winner wnrWinner)
+        {
+            winner = wnrWinner;
+        }
 
-		public void OnWinnerAnnounced(Winner wnrNewWinner)
-		{
+        public void OnWinnerAnnounced(Winner wnrNewWinner)
+        {
             //Increment the correct counter based on the winner
-			if (wnrNewWinner == Winner)
-				winCount++;
-			else if (wnrNewWinner == Winner.Draw)
-				drawCount++;
-			else
-				lossCount++;
-		}
+            if (wnrNewWinner == Winner)
+                winCount++;
+            else if (wnrNewWinner == Winner.Draw)
+                drawCount++;
+            else
+                lossCount++;
+        }
 
-		public override string ToString()
-		{
+        public override string ToString()
+        {
             //Return a string representation of the player object
-			return "Win count: " + WinCount + "\n" +
+            return "Win count: " + WinCount + "\n" +
                 "Draw count: " + DrawCount + "\n" +
                 "Loss count: " + LossCount + "\n" +
-				"Current Choice: " + choice;
-		}
-	}
+                "Current Choice: " + choice;
+        }
+    }
 }
