@@ -80,7 +80,7 @@ namespace RockPaperScissorsLizardSpock
 
 		public Player(Winner wnrWinner)
 		{
-			this.winner = wnrWinner;
+			winner = wnrWinner;
 		}
 
 		public void OnWinnerAnnounced(Winner wnrNewWinner)

@@ -10,6 +10,8 @@ namespace RockPaperScissorsLizardSpock
     {
         //There is no current choice (i.e. just do nothing)
         None,
+
+        //All the "real" choices:
         Rock,
         Paper,
         Scissors,

@@ -20,7 +20,9 @@ namespace RockPaperScissorsLizardSpock
             string strInput = string.Empty;
             while (strInput.Trim().ToLower() != EXIT_FLAG.Trim().ToLower())
             {
-                Console.WriteLine("\nPlease enter one of the following choices or their respective numbers (starting from 1) or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
+                Console.WriteLine(
+                    "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
+                    "or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
                 foreach(string choice in Enum.GetNames(typeof(Choice)))
                 {
                     if(choice == Choice.None.ToString())
@@ -37,8 +39,7 @@ namespace RockPaperScissorsLizardSpock
 
                 //Get the user and computer choices and set them into their respective players
                 Winner winner;
-                int intInput;
-                if (int.TryParse(strInput, out intInput))
+                if (int.TryParse(strInput, out int intInput))
                 {
                     playerUser.Choice = ConvertIntegerToChoice(intInput);
                 }
