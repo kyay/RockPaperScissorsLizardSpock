@@ -10,6 +10,7 @@ namespace RockPaperScissorsLizardSpock
     {
         private Winner winner;
         private Choice choice;
+        private GameMode gameMode;
         private int winCount;
         private int lossCount;
         private int drawCount;
@@ -36,6 +37,18 @@ namespace RockPaperScissorsLizardSpock
             set
             {
                 choice = value;
+            }
+        }
+
+        public GameMode GameMode
+        {
+            get
+            {
+                return gameMode;
+            }
+            set
+            {
+                gameMode = value;
             }
         }
 
@@ -115,7 +128,7 @@ namespace RockPaperScissorsLizardSpock
             return "Win count: " + WinCount + "\n" +
                 "Draw count: " + DrawCount + "\n" +
                 "Loss count: " + LossCount + "\n" +
-                "Current Choice: " + choice + "\n" +
+                "Current Choice: " + choice.ToString(gameMode) + "\n" +
                 "Rounds Played: " + roundsPlayed;
         }
     }

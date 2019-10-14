@@ -18,20 +18,29 @@ namespace RockPaperScissorsLizardSpock
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock.");
+            Console.WriteLine("\n Please choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
+            string strGameMode;
+            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() && strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower())
+            {
+                Console.WriteLine("Please enter a correct game mode from above");
+            }
+            playerUser.GameMode = strGameMode.Trim().ToLower() == GameMode.Regular.GetDescription().ToLower() ? GameMode.Regular : GameMode.LettsEdition;
+            playerComputer.GameMode = playerUser.GameMode;
             string strInput = string.Empty;
             while (strInput.Trim().ToLower() != EXIT_FLAG.Trim().ToLower())
             {
-                Console.WriteLine(
+                Console.WriteLine("\nRound " + (playerUser.RoundsPlayed + 1) +
                     "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
                     "or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
                 //Print out all the possible choices
-                foreach (string choice in Enum.GetNames(typeof(Choice)))
+                foreach (int choice in Enum.GetValues(typeof(Choice)))
                 {
-                    if (choice == Choice.None.ToString())
+                    Choice curChoice = ConvertIntegerToChoice(choice);
+                    if (curChoice == Choice.None)
                     {
                         continue;
                     }
-                    Console.WriteLine(choice);
+                    Console.WriteLine(curChoice.ToString(playerUser.GameMode));
                 }
                 //Read the user input
                 strInput = Console.ReadLine();
@@ -49,7 +58,7 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else
                 {
-                    playerUser.Choice = ConvertStringToChoice(strInput);
+                    playerUser.Choice = ConvertStringToChoice(strInput, playerUser.GameMode);
                 }
                 //If the user entered an invalid choice, tell them so.
                 if (playerUser.Choice == Choice.None)
@@ -115,19 +124,27 @@ namespace RockPaperScissorsLizardSpock
             return Choice.None;
         }
 
-        private static Choice ConvertStringToChoice(string strChoice)
+        private static Choice ConvertStringToChoice(string strChoice, GameMode gameMode)
         {
-            System.Collections.IEnumerator namesEnumerator = Enum.GetNames(typeof(Choice)).GetEnumerator();
-
-            //Loop over all choice names
-            while (namesEnumerator.MoveNext())
+            if (gameMode == GameMode.Regular)
             {
-                if (strChoice.Trim().ToLower() == namesEnumerator.Current.ToString().ToLower())
+                System.Collections.IEnumerator namesEnumerator = Enum.GetNames(typeof(Choice)).GetEnumerator();
+
+                //Loop over all choice names
+                while (namesEnumerator.MoveNext())
                 {
-                    return (Choice)Enum.Parse(typeof(Choice), (string)namesEnumerator.Current);
+                    if (strChoice.Trim().ToLower() == namesEnumerator.Current.ToString().ToLower())
+                    {
+                        return (Choice)Enum.Parse(typeof(Choice), (string)namesEnumerator.Current);
+                    }
                 }
+                return Choice.None;
             }
-            return Choice.None;
+            else
+            {
+
+                return ConvertIntegerToChoice(Array.IndexOf(EnumUtils.strAlternativeChoiceNames, strChoice));
+            }
         }
     }
 }
