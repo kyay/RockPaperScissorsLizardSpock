@@ -71,9 +71,11 @@ namespace RockPaperScissorsLizardSpock
                 playerUser.OnWinnerAnnounced(winner);
                 playerComputer.OnWinnerAnnounced(winner);
                 DisplayWinner(winner);
+                //Wait 1 second.
                 Thread.Sleep(1000);
                 DisplayStats();
                 ResetChoices();
+                //Wait 1 second.
                 Thread.Sleep(1000);
             }
         }
