@@ -17,6 +17,8 @@ namespace RockPaperScissorsLizardSpock
 
         static void Main(string[] args)
         {
+            //Play starting sound
+            System.Media.SystemSounds.Asterisk.Play();
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock.");
             Console.WriteLine("\nPlease choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
             string strGameMode;
@@ -72,6 +74,8 @@ namespace RockPaperScissorsLizardSpock
                     Console.WriteLine("\nPlease enter a valid choice");
                     continue;
                 }
+                //Play click sound
+                System.Media.SystemSounds.Exclamation.Play();
 
                 playerComputer.Choice = ConvertIntegerToChoice(rGen.Next(1, Enum.GetValues(typeof(Choice)).Length));
 
@@ -94,6 +98,8 @@ namespace RockPaperScissorsLizardSpock
                 //Wait 1 second.
                 Thread.Sleep(1000);
             }
+            //Play closing sound
+            System.Media.SystemSounds.Hand.Play();
         }
 
         private static void ResetChoices()
