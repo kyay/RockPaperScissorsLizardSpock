@@ -65,12 +65,14 @@ namespace RockPaperScissorsLizardSpock
                 {
                     playerUser.Choice = ConvertStringToChoice(strInput, playerUser.GameMode);
                 }
+
                 //If the user entered an invalid choice, tell them so.
                 if (playerUser.Choice == Choice.None)
                 {
                     Console.WriteLine("\nPlease enter a valid choice");
                     continue;
                 }
+
                 playerComputer.Choice = ConvertIntegerToChoice(rGen.Next(1, Enum.GetValues(typeof(Choice)).Length));
 
                 //Decide who the winner is
