@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Choice.cs" />
+    <Compile Include="IntegerUtils.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="GameMode.cs" />
     <Compile Include="Player.cs" />

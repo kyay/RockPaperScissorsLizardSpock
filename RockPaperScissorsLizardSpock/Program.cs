@@ -18,13 +18,16 @@ namespace RockPaperScissorsLizardSpock
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock.");
-            Console.WriteLine("\n Please choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
+            Console.WriteLine("\nPlease choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
             string strGameMode;
-            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() && strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower())
+			int intGameMode = -1;
+            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() && 
+				strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower() && 
+				(intGameMode = IntegerUtils.ForceParse(strGameMode)) != 0  && intGameMode != 1)
             {
                 Console.WriteLine("Please enter a correct game mode from above");
             }
-            playerUser.GameMode = strGameMode.Trim().ToLower() == GameMode.Regular.GetDescription().ToLower() ? GameMode.Regular : GameMode.LettsEdition;
+            playerUser.GameMode = (intGameMode == 0 || strGameMode.Trim().ToLower() == GameMode.Regular.GetDescription().ToLower()) ? GameMode.Regular : GameMode.LettsEdition;
             playerComputer.GameMode = playerUser.GameMode;
             string strInput = string.Empty;
             while (strInput.Trim().ToLower() != EXIT_FLAG.Trim().ToLower())
@@ -142,8 +145,7 @@ namespace RockPaperScissorsLizardSpock
             }
             else
             {
-
-                return ConvertIntegerToChoice(Array.IndexOf(EnumUtils.strAlternativeChoiceNames, strChoice));
+                return ConvertIntegerToChoice(Array.FindIndex(EnumUtils.strAlternativeChoiceNames, s => s.ToLower().Equals(strChoice)));
             }
         }
     }
