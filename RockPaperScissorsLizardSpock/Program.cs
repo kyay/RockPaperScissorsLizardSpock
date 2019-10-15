@@ -21,16 +21,16 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("\nPlease choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
             string strGameMode;
             int intGameMode = -1;
-            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() &&
-                strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower() &&
+            while ((strGameMode = Console.ReadLine()).Simplify() != GameMode.Regular.GetDescription().Simplify() &&
+                strGameMode.Simplify() != GameMode.LettsEdition.GetDescription().Simplify() &&
                 (intGameMode = IntegerUtils.ForceParse(strGameMode)) != 0 && intGameMode != 1)
             {
                 Console.WriteLine("Please enter a correct game mode from above");
             }
-            playerUser.GameMode = (intGameMode == 0 || strGameMode.Trim().ToLower() == GameMode.Regular.GetDescription().ToLower()) ? GameMode.Regular : GameMode.LettsEdition;
+            playerUser.GameMode = (intGameMode == 0 || strGameMode.Simplify() == GameMode.Regular.GetDescription().Simplify()) ? GameMode.Regular : GameMode.LettsEdition;
             playerComputer.GameMode = playerUser.GameMode;
             string strInput = string.Empty;
-            while (strInput.Trim().ToLower() != EXIT_FLAG.Trim().ToLower())
+            while (strInput.Simplify() != EXIT_FLAG.Simplify())
             {
                 Console.WriteLine("\nRound " + (playerUser.RoundsPlayed + 1) +
                     "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
@@ -50,7 +50,7 @@ namespace RockPaperScissorsLizardSpock
                 //Read the user input
                 strInput = Console.ReadLine();
                 //Exit if user wants to
-                if (strInput.Trim().ToLower() == EXIT_FLAG.Trim().ToLower())
+                if (strInput.Simplify() == EXIT_FLAG.Simplify())
                 {
                     continue;
                 }
@@ -138,7 +138,7 @@ namespace RockPaperScissorsLizardSpock
                 //Loop over all choice names
                 while (namesEnumerator.MoveNext())
                 {
-                    if (strChoice.Trim().ToLower() == namesEnumerator.Current.ToString().ToLower())
+                    if (strChoice.Simplify() == namesEnumerator.Current.ToString().Simplify())
                     {
                         return (Choice)Enum.Parse(typeof(Choice), (string)namesEnumerator.Current);
                     }
@@ -147,7 +147,7 @@ namespace RockPaperScissorsLizardSpock
             }
             else
             {
-                return ConvertIntegerToChoice(Array.FindIndex(EnumUtils.strAlternativeChoiceNames, s => s.ToLower() == strChoice));
+                return ConvertIntegerToChoice(Array.FindIndex(EnumUtils.strAlternativeChoiceNames, s => s.Simplify() == strChoice.Simplify()));
             }
         }
     }
