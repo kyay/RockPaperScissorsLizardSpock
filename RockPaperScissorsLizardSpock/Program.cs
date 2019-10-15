@@ -20,10 +20,10 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock.");
             Console.WriteLine("\nPlease choose a game mode from the following or enter its respective number (0 or 1):\n" + GameMode.Regular.GetDescription() + "\n" + GameMode.LettsEdition.GetDescription());
             string strGameMode;
-			int intGameMode = -1;
-            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() && 
-				strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower() && 
-				(intGameMode = IntegerUtils.ForceParse(strGameMode)) != 0  && intGameMode != 1)
+            int intGameMode = -1;
+            while ((strGameMode = Console.ReadLine()).Trim().ToLower() != GameMode.Regular.GetDescription().ToLower() &&
+                strGameMode.Trim().ToLower() != GameMode.LettsEdition.GetDescription().ToLower() &&
+                (intGameMode = IntegerUtils.ForceParse(strGameMode)) != 0 && intGameMode != 1)
             {
                 Console.WriteLine("Please enter a correct game mode from above");
             }
@@ -35,10 +35,12 @@ namespace RockPaperScissorsLizardSpock
                 Console.WriteLine("\nRound " + (playerUser.RoundsPlayed + 1) +
                     "\nPlease enter one of the following choices or their respective numbers (starting from 1) " +
                     "or enter \"" + EXIT_FLAG + "\" to exit out of the program: ");
+
+                Array choices = Enum.GetValues(typeof(Choice));
                 //Print out all the possible choices
-                foreach (int choice in Enum.GetValues(typeof(Choice)))
+                for (int i = 0; i < choices.Length; i++)
                 {
-                    Choice curChoice = ConvertIntegerToChoice(choice);
+                    Choice curChoice = ConvertIntegerToChoice((int)choices.GetValue(i));
                     if (curChoice == Choice.None)
                     {
                         continue;
@@ -145,7 +147,7 @@ namespace RockPaperScissorsLizardSpock
             }
             else
             {
-                return ConvertIntegerToChoice(Array.FindIndex(EnumUtils.strAlternativeChoiceNames, s => s.ToLower().Equals(strChoice)));
+                return ConvertIntegerToChoice(Array.FindIndex(EnumUtils.strAlternativeChoiceNames, s => s.ToLower() == strChoice));
             }
         }
     }
